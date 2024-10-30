@@ -46,6 +46,10 @@
                                     class="text-base text-white py-2 mx-8 flex group-hover:text-primary">Menu</a>
                             </li>
                             <li class="group">
+                                <a href="lihat-pesanan.php"
+                                    class="text-base text-white py-2 mx-8 flex group-hover:text-primary">Lihat Pesanan</a>
+                            </li>
+                            <li class="group">
                                 <a href="#tentang"
                                     class="text-base text-white py-2 mx-8 flex group-hover:text-primary">Tentang</a>
                             </li>

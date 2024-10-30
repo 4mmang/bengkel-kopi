@@ -84,6 +84,7 @@
             <!-- Form Footer -->
             <div class="flex justify-end p-4 border-t">
                 <button id="placeOrder" class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">Pesan</button>
+                <a href="index.php" class="px-4 py-2 bg-blue-300 rounded ml-3">Kembali ke halaman utama</a>
             </div>
         </div>
     </div>
