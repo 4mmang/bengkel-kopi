@@ -158,10 +158,11 @@
             <h1 class="text-3xl font-bold">Detail Pesanan</h1>
 
             <div class="container">
-            </div> 
+            </div>
 
             <!-- pop up start -->
-            <div id="pop-up" class="rounded-2xl mt-3 hidden border border-blue-100 bg-white p-4 shadow-lg sm:p-6 lg:p-8"
+            <div id="pop-up"
+                class="rounded-2xl mt-3 hidden border border-blue-100 bg-white p-4 shadow-lg sm:p-6 lg:p-8"
                 role="alert">
                 <div class="flex items-center gap-4">
                     <span class="shrink-0 rounded-full bg-blue-400 p-2 text-white">
@@ -194,21 +195,80 @@
             </div>
             <!-- pop up end -->
 
+            <?php
+            include '../../backend/connection.php';
+
+            // Ambil id dari URL
+            $id = $_GET['id'];
+
+            // Query untuk mengambil data pesanan berdasarkan id
+            $sql = "SELECT nama, waktu_pemesanan, meja, take_away, status FROM pesanan WHERE id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("i", $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            // Jika data ditemukan
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+            ?>
             <div class="overflow-x-auto mt-4">
                 <div class="border py-5 px-5">
-                    <p>Nama : Arman</p>
-                    <p>Waktu Pemesanan : 20/10/2024, 18:00:00 </p>
-                    <p>Meja : Dalam </p>
-                    <p>Take Away : Ya </p>
+                    <p>Nama : <?php echo htmlspecialchars($row['nama']); ?></p>
+                    <p>Waktu Pemesanan : <?php echo date('d/m/Y, H:i:s', strtotime($row['waktu_pemesanan'])); ?></p>
+                    <p>Meja : <?php echo htmlspecialchars(ucwords($row['meja'])); ?></p>
+                    <p>Take Away : <?php echo $row['take_away'] == 'ya' ? 'Ya' : 'Tidak'; ?></p>
+                    <p>Status: <?php echo htmlspecialchars(ucwords($row['status'])); ?></p>
                     <p>List Pesanan:</p>
-                    <li>1x Americano</li>
-                    <li>3x Kapucino</li>
-                    <p>Status: Proses</p>
-                    <p class="mb-5">Total Pembayaran : Rp. 100.000, 00</p>
-                    <a href="" class="bg-blue-600 px-3 py-2 rounded-lg text-white">Tandai Telah Selesai</a>
-                    <a href="index.html" class="bg-gray-600 px-3 py-2 rounded-lg text-white">Kembali</a>
+
+                    <!-- Menampilkan item pesanan dari tabel lain -->
+                    <ul>
+                        <?php
+                        // Query untuk mengambil item pesanan terkait dari tabel orders dan menus
+                        $sql_items = "
+                                                    SELECT menus.nama, orders.jumlah, menus.harga 
+                                                    FROM orders 
+                                                    JOIN menus ON orders.id_menu = menus.id 
+                                                    WHERE orders.id_pesanan = ?";
+                        $stmt_items = $conn->prepare($sql_items);
+                        $stmt_items->bind_param('i', $id);
+                        $stmt_items->execute();
+                        $result_items = $stmt_items->get_result();
+                        
+                        // Total harga untuk pesanan
+                        $total_price = 0;
+                        
+                        // Menampilkan setiap item pesanan
+                        while ($item = $result_items->fetch_assoc()) {
+                            $quantity = (int) $item['jumlah'];
+                            $price = (float) $item['harga'];
+                            $item_total = $quantity * $price;
+                            $total_price += $item_total;
+                        
+                            echo '<li> - ' . htmlspecialchars($quantity) . 'x ' . htmlspecialchars($item['nama']) . ' - Rp. ' . number_format($item_total, 2, ',', '.') . '</li>';
+                        }
+                        
+                        echo "<p class='mb-5 mt-3 font-bold'>Total Pembayaran: Rp. " . number_format($total_price, 2, ',', '.') . '</p>';
+                        ?>
+                    </ul>
+                    <a href="mark_complete.php?id=<?php echo $id; ?>"
+                        class="bg-blue-600 px-3 mr-2 py-2 rounded-lg text-white 
+   <?php echo htmlspecialchars($row['status']) === 'selesai' ? 'cursor-not-allowed opacity-50 pointer-events-none' : ''; ?>">
+                        Tandai Telah Selesai
+                    </a>
+
+                    <a href="index.php" class="bg-gray-600 px-3 py-2 rounded-lg text-white">Kembali</a>
                 </div>
             </div>
+
+            <?php
+            } else {
+                echo "<p>Data pesanan tidak ditemukan.</p>";
+            }
+
+            $conn->close();
+            ?>
+
         </div>
     </div>
 
@@ -235,13 +295,13 @@
 
         const btnDownload = document.getElementById('download')
         const popUp = document.getElementById('pop-up')
-        btnDownload.addEventListener('click', function () {
+        btnDownload.addEventListener('click', function() {
             popUp.classList.toggle('hidden')
         })
     </script>
 
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('#example').DataTable();
         });
     </script>

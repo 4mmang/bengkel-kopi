@@ -233,20 +233,42 @@
                     </thead>
 
                     <tbody class="divide-y divide-gray-200">
-                        <tr>
-                            <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">1</td>
-                            <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">John Doe</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">Dalam</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">Proses</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">Ya</td>
-                            <td class="whitespace-nowrap px-4 py-2">
-                                <a href="detail.html"
-                                    class="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700">
-                                    Detail
-                                </a> 
-                            </td>
-                        </tr>
+                        <?php
+                        include '../../backend/connection.php';
+                        // Lakukan query untuk mengambil data pesanan
+                        $sql = "SELECT id, nama, status, meja, take_away, waktu_pemesanan 
+                                                            FROM pesanan 
+                                                            WHERE DATE(waktu_pemesanan) = CURDATE()
+                                                            ORDER BY 
+                                                                CASE WHEN status = 'proses' THEN 1 ELSE 2 END,
+                                                                waktu_pemesanan ASC";
+                        
+                        $result = $conn->query($sql);
+                        $no = 1; // Inisialisasi nomor urut
+                        
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                // Tampilkan setiap data dalam bentuk tabel
+                                echo '<tr>';
+                                echo "<td class='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>" . $no++ . '</td>';
+                                echo "<td class='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>" . htmlspecialchars(ucwords($row['nama'])) . '</td>';
+                                echo "<td class='whitespace-nowrap px-4 py-2 text-gray-700'>" . htmlspecialchars(ucwords($row['meja'])) . '</td>';
+                                echo "<td class='whitespace-nowrap px-4 py-2 text-gray-700'>" . htmlspecialchars(ucwords($row['status'])) . '</td>';
+                                echo "<td class='whitespace-nowrap px-4 py-2 text-gray-700'>" . ($row['take_away'] == 'ya' ? 'Ya' : 'Tidak') . '</td>';
+                                echo "<td class='whitespace-nowrap px-4 py-2'>
+                                                                    <a href='detail.php?id=" .
+                                    htmlspecialchars($row['id']) .
+                                    "' 
+                                                                        class='inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700'>
+                                                                        Detail
+                                                                    </a>
+                                                                  </td>";
+                                echo '</tr>';
+                            }
+                        }
+                        ?>
                     </tbody>
+
                 </table>
             </div>
         </div>

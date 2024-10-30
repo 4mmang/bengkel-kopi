@@ -24,7 +24,9 @@
 
     <div class="container mx-auto p-4 mt-4">
         <h1 class="mb-3 text-white">Daftar Pesanan Hari ini.</h1>
-        <a href="index.php" class="inline-block rounded bg-red-600 px-4 mb-5 py-2 text-xs font-medium text-white hover:bg-indigo-700">Halaman Utama</a>
+        <a href="index.php"
+            class="inline-block rounded bg-red-600 px-4 mb-5 py-2 text-xs font-medium text-white hover:bg-indigo-700">Halaman
+            Utama</a>
 
         <div class="bg-white rounded-lg shadow-lg w-full mx-auto p-4">
             <div class="overflow-x-auto">
@@ -35,23 +37,49 @@
                             <th class="px-4 py-2">Nama</th>
                             <th class="px-4 py-2">Status</th>
                             <th class="px-4 py-2">Meja</th>
-                            <th class="px-4 py-2">Jenis Pesanan</th>
+                            <th class="px-4 py-2">Take Away</th>
                             <th class="px-4 py-2">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="border px-4 py-2">1</td>
-                            <td class="border px-4 py-2">Arman</td>
-                            <td class="border px-4 py-2">Proses</td>
-                            <td class="border px-4 py-2">Dalam</td>
-                            <td class="border px-4 py-2">Take Away</td>
-                            <td class="border px-4 py-2">
-                                <a href="#" class="inline-block rounded bg-red-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700">Detail</a>
-                            </td>
-                        </tr>
+                        <?php
+                        include 'backend/connection.php';
+                        
+                        // Query untuk mengambil data dari tabel pesanan
+                        $sql = "SELECT id, nama, status, meja, take_away, waktu_pemesanan 
+                                FROM pesanan 
+                                WHERE DATE(waktu_pemesanan) = CURDATE()
+                                ORDER BY 
+                                    CASE WHEN status = 'proses' THEN 1 ELSE 2 END,
+                                    waktu_pemesanan ASC";
+                        
+                        $result = $conn->query($sql);
+                        $no = 1;
+                        
+                        if ($result->num_rows > 0) {
+                            // Output data dari setiap baris
+                            while ($row = $result->fetch_assoc()) {
+                                echo '<tr>';
+                                echo "<td class='border px-4 py-2'>" . $no++ . '</td>';
+                                echo "<td class='border px-4 py-2'>" . ucwords(htmlspecialchars($row['nama'])) . '</td>';
+                                echo "<td class='border px-4 py-2'>" . ucwords(htmlspecialchars($row['status'])) . '</td>';
+                                echo "<td class='border px-4 py-2'>" . ucwords(htmlspecialchars($row['meja'])) . '</td>';
+                        
+                                echo "<td class='border px-4 py-2'>" . ($row['take_away'] == 'ya' ? 'Ya' : 'Tidak') . '</td>';
+                                echo "<td class='border px-4 py-2'>";
+                                echo "<a href='detail_pesanan.php?id=" . $row['id'] . "' class='inline-block rounded bg-red-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700'>Detail</a>";
+                                echo '</td>';
+                                echo '</tr>';
+                            }
+                        } else {
+                            echo "<tr><td colspan='6' class='border px-4 py-2 text-center'>Tidak ada data pesanan</td></tr>";
+                        }
+                        // Tutup koneksi
+                        $conn->close();
+                        ?>
                     </tbody>
                 </table>
+
             </div>
         </div>
     </div>

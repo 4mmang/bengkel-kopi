@@ -39,11 +39,11 @@
                 <label class="block font-semibold mt-4">Jenis Pesanan:</label>
                 <div class="flex gap-4 mt-2">
                     <label class="flex items-center">
-                        <input type="radio" name="orderType" id="jenisPesanan" value="takeaway" class="mr-2">
+                        <input type="radio" name="jenisPesanan" value="ya" class="mr-2">
                         Take Away
                     </label>
                     <label class="flex items-center">
-                        <input type="radio" name="orderType" id="jenisPesanan" value="ditempat" class="mr-2">
+                        <input type="radio" name="jenisPesanan" value="tidak" class="mr-2">
                         Minum di Tempat
                     </label>
                 </div>
@@ -155,7 +155,8 @@
             if (orders.length > 0) {
                 const nama = document.getElementById("nama").value.trim();
                 const meja = document.getElementById("meja").value;
-                const jenisPesanan = document.getElementById("jenisPesanan").value;
+                // const jenisPesanan = document.getElementById("jenisPesanan").value;
+                const jenisPesanan = document.querySelector('input[name="jenisPesanan"]:checked').value;
 
                 // Validasi input
                 if (nama === "" || meja === "" || jenisPesanan === "") {
@@ -165,23 +166,55 @@
                         text: 'Harap isi Nama, Pilihan Meja, dan Jenis Pesanan sebelum memesan!',
                     });
                 } else {
-                    // Tambahkan detail pesanan
+                    // Buat objek pesanan lengkap
                     const fullOrder = {
                         nama: nama,
                         meja: meja,
                         jenisPesanan: jenisPesanan,
-                        items: [...orders] // Salin daftar item pesanan
+                        items: [...orders]
                     };
 
-                    alert("Pesanan telah diterima:\n" + JSON.stringify(fullOrder));
-                    orders = []; // Kosongkan daftar setelah pesan
-                    updateOrderList();
+                    // Kirim data ke PHP dengan AJAX menggunakan fetch
+                    fetch('proses_pesanan.php', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(fullOrder)
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                orders = []; // Kosongkan daftar setelah pesan
+                                updateOrderList();
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Pesanan Berhasil',
+                                    text: 'Pesanan Anda telah diterima.',
+                                    allowOutsideClick: false, // Cegah menutup pop-up dengan mengklik di luar
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        // Arahkan ke halaman lihat-pesanan.php jika tombol OK diklik
+                                        window.location.href = 'lihat-pesanan.php';
+                                    }
+                                });
 
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Pesanan Berhasil',
-                        text: 'Pesanan Anda telah diterima.',
-                    });
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Gagal Mengirim Pesanan',
+                                    text: data.message,
+                                });
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: 'Terjadi kesalahan saat mengirim pesanan.',
+                            });
+                        });
                 }
             } else {
                 Swal.fire({
@@ -189,7 +222,6 @@
                     title: "Oops...",
                     text: "Silakan tambahkan pesanan terlebih dahulu!",
                 });
-                // alert("Silakan tambahkan pesanan terlebih dahulu.");
             }
         });
     </script>
