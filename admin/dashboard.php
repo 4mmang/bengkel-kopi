@@ -3,7 +3,7 @@ session_start();
 
 // Periksa apakah pengguna sudah login, jika tidak, arahkan ke login
 if (!isset($_SESSION['user_id'])) {
-    header("Location: ../login.php");
+    header('Location: ../login.php');
     exit();
 }
 ?>
@@ -94,200 +94,49 @@ if (!isset($_SESSION['user_id'])) {
             </div>
         </nav>
 
-        <!-- Isi konten -->
         <div class="flex-1 p-6 bg-gray-100 overflow-y-auto">
             <h1 class="text-3xl font-bold">Dashboard</h1>
-            <p>This is the main content area. The sidebar is separate and the navbar stays on top of the content area
-                only.
-            </p>
+            <!-- <p>This is the main content area. The sidebar is separate and the navbar stays on top of the content area only.</p> -->
+
+            <?php
+            // Koneksi ke database
+            include '../backend/connection.php';
+            
+            // Query untuk mendapatkan total pendapatan
+            $sql = "
+                            SELECT SUM(menus.harga * orders.jumlah) AS total_pendapatan
+                            FROM pesanan
+                            JOIN orders ON pesanan.id = orders.id_pesanan
+                            JOIN menus ON orders.id_menu = menus.id
+                            WHERE pesanan.status = 'selesai'
+                        ";
+            $result = $conn->query($sql);
+            
+            $total_pendapatan = 0;
+            if ($result && $result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $total_pendapatan = $row['total_pendapatan'] ?? 0;
+            }
+            
+            $conn->close();
+            ?>
 
             <div class="container">
-            </div>
-
-            <!-- Modal Script -->
-            <script>
-                const modal = document.getElementById('modal');
-                const openModalBtn = document.getElementById('openModal');
-                const closeModalBtn = document.getElementById('closeModal');
-
-                openModalBtn.addEventListener('click', () => {
-                    modal.classList.remove('hidden');
-                });
-
-                closeModalBtn.addEventListener('click', () => {
-                    modal.classList.add('hidden');
-                });
-
-                // Optional: Close modal when clicking outside modal content
-                window.addEventListener('click', (e) => {
-                    if (e.target === modal) {
-                        modal.classList.add('hidden');
-                    }
-                });
-            </script>
-
-
-            <!-- pop up start -->
-            <div id="pop-up" class="rounded-2xl mt-3 hidden border border-blue-100 bg-white p-4 shadow-lg sm:p-6 lg:p-8"
-                role="alert">
-                <div class="flex items-center gap-4">
-                    <span class="shrink-0 rounded-full bg-blue-400 p-2 text-white">
-                        <svg class="size-4" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path clip-rule="evenodd"
-                                d="M18 3a1 1 0 00-1.447-.894L8.763 6H5a3 3 0 000 6h.28l1.771 5.316A1 1 0 008 18h1a1 1 0 001-1v-4.382l6.553 3.276A1 1 0 0018 15V3z"
-                                fill-rule="evenodd" />
-                        </svg>
-                    </span>
-
-                    <p class="font-medium sm:text-lg">New message!</p>
-                </div>
-
-                <p class="mt-4 text-gray-500">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ea quo unde vel adipisci
-                    blanditiis voluptates eum. Nam, cum minima?
-                </p>
-
-                <div class="mt-6 sm:flex sm:gap-4">
-                    <a class="inline-block w-full rounded-lg bg-blue-500 px-5 py-3 text-center text-sm font-semibold text-white sm:w-auto"
-                        href="#">
-                        Take a Look
-                    </a>
-
-                    <a class="mt-2 inline-block w-full rounded-lg bg-gray-50 px-5 py-3 text-center text-sm font-semibold text-gray-500 sm:mt-0 sm:w-auto"
-                        href="#">
-                        Mark as Read
-                    </a>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white shadow-lg rounded-lg p-6 mt-6">
+                        <h2 class="text-xl font-semibold text-gray-700">Total Pendapatan</h2>
+                        <p class="text-4xl font-bold text-green-500 mt-4">Rp <?php echo number_format($total_pendapatan, 0, ',', '.'); ?></p>
+                        <!-- <p class="text-sm text-gray-500">Pendapatan dari pesanan selesai</p> -->
+                    </div>
                 </div>
             </div>
-            <!-- pop up end -->
+
 
             <div class="overflow-x-auto mt-4">
-                <table id="example" class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm mt-4">
-                    <thead class="ltr:text-left rtl:text-right">
-                        <tr>
-                            <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Name</th>
-                            <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Date of Birth</th>
-                            <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Role</th>
-                            <th class="whitespace-neowrap px-4 py-2 font-medium text-gray-900">Salary</th>
-                            <th class="px-4 py-2"></th>
-                        </tr>
-                    </thead>
-
-                    <tbody class="divide-y divide-gray-200">
-                        <tr>
-                            <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">John Doe</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">24/05/1995</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">Web Developer</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">$120,000</td>
-                            <td class="whitespace-nowrap px-4 py-2">
-                                <a href="#"
-                                    class="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700">
-                                    View
-                                </a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Jane Doe</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">04/11/1980</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">Web Designer</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">$100,000</td>
-                            <td class="whitespace-nowrap px-4 py-2">
-                                <a href="#"
-                                    class="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700">
-                                    View
-                                </a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Gary Barlow</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">24/05/1995</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">Singer</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">$20,000</td>
-                            <td class="whitespace-nowrap px-4 py-2">
-                                <a href="#"
-                                    class="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700">
-                                    View
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Gary Barlow</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">24/05/1995</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">Singer</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">$20,000</td>
-                            <td class="whitespace-nowrap px-4 py-2">
-                                <a href="#"
-                                    class="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700">
-                                    View
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Gary Barlow</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">24/05/1995</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">Singer</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">$20,000</td>
-                            <td class="whitespace-nowrap px-4 py-2">
-                                <a href="#"
-                                    class="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700">
-                                    View
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Gary Barlow</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">24/05/1995</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">Singer</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">$20,000</td>
-                            <td class="whitespace-nowrap px-4 py-2">
-                                <a href="#"
-                                    class="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700">
-                                    View
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Gary Barlow</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">24/05/1995</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">Singer</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">$20,000</td>
-                            <td class="whitespace-nowrap px-4 py-2">
-                                <a href="#"
-                                    class="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700">
-                                    View
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Gary Barlow</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">24/05/1995</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">Singer</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">$20,000</td>
-                            <td class="whitespace-nowrap px-4 py-2">
-                                <a href="#"
-                                    class="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700">
-                                    View
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Gary Barlow</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">24/05/1995</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">Singer</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">$20,000</td>
-                            <td class="whitespace-nowrap px-4 py-2">
-                                <a href="#"
-                                    class="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700">
-                                    View
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <!-- Tambahan konten lainnya dapat diletakkan di sini -->
             </div>
         </div>
+
     </div>
 
     <script>
@@ -316,12 +165,6 @@ if (!isset($_SESSION['user_id'])) {
         btnDownload.addEventListener('click', function() {
             popUp.classList.toggle('hidden')
         })
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            $('#example').DataTable();
-        });
     </script>
 </body>
 
