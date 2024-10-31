@@ -52,13 +52,13 @@
                 </a>
             </li>
             <li>
-                <a href="pesanan/index.html"
+                <a href="pesanan/index.php"
                     class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
                     <i class="fas fa-coffee mr-2"></i> Pesanan
                 </a>
             </li>
             <li>
-                <a href="menu/index.html"
+                <a href="menu/index.php"
                     class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
                     <i class="fas fa-coffee mr-2"></i> Menu
                 </a>
@@ -72,7 +72,7 @@
         <nav class="bg-white p-4 sticky top-0 z-10">
             <div class="flex justify-between items-center">
                 <div class="text-lg font-semibold md:hidden">
-                    <a href="../index.html" class="">BengkelKopi</a>
+                    <a href="../index.php" class="">BengkelKopi</a>
                 </div>
                 <!-- Tombol toggle sidebar -->
                 <button id="menu-btn" class="p-2 rounded-lg text-black md:hidden">

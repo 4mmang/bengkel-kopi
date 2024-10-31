@@ -47,7 +47,7 @@
 
         <ul id="sidebar-menu" class="mt-6 space-y-1">
             <li>
-                <a href="../dashboard.html" class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500">
+                <a href="../dashboard.php" class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500">
                     <i class="fas fa-tachometer-alt mr-2"></i> Dashboard
                 </a>
             </li>
@@ -60,7 +60,7 @@
             </li>
 
             <li>
-                <a href="../menu/index.html"
+                <a href="../menu/index.php"
                     class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
                     <i class="fas fa-coffee mr-2"></i> Menu
                 </a>

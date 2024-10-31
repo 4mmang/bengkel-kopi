@@ -63,14 +63,14 @@
             </div>
         </div>
     </header>
-    <!-- Header End --> 
+    <!-- Header End -->
 
     <!-- banner section-->
     <section id="beranda">
         <div class="bg-[url('/image/bgbanner.jpeg')] w-full h-screen bg-cover bg-center">
             <div class="bg-black/60 w-full h-full flex flex-col  items-center">
                 <div class="mt-12 md:mt-20">
-                    <h1><img src="image/logoobk.png" alt="" width="100px"></h1>
+                    <h1><img src="dist/image/logoobk.png" alt="" width="100px"></h1>
                 </div>
                 <div class="w-64 md:w-1/2 space-y-3 flex flex-col justify-center">
                     <h1 class="text-white text-center text-2xl md:text-5xl mt-24">Selamat Datang!</h1>
@@ -168,7 +168,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 ps-4 pe-4">
                 <!--menu 1-->
                 <div class="flex space-x-5 py-8 px-8 ring-2 ring-white rounded-xl">
-                    <img src="image/air.jpg" width="100px" />
+                    <img src="dist/image/air.jpg" width="100px" />
                     <div>
                         <h4 class="text-2xl text-white font-bold mb-2">Air Mineral</h4>
                         <p class="text-white text-xl">Rp 5.000</p>
@@ -176,7 +176,7 @@
                 </div>
                 <!--menu 2-->
                 <div class="flex space-x-5 py-8 px-8 ring-2 ring-white rounded-xl">
-                    <img src="image/hitam.jpg" width="100px" />
+                    <img src="dist/image/hitam.jpg" width="100px" />
                     <div>
                         <h4 class="text-xl text-white font-bold">Kopi Hitam</h4>
                         <h4 class="text-xl text-white font-bold mb-2">( Rp 5.000 )</h4>
@@ -185,7 +185,7 @@
                 </div>
                 <!--menu 3-->
                 <div class="flex space-x-5 py-8 px-8 ring-2 ring-white rounded-xl">
-                    <img src="image/klasik.jpg" width="100px" />
+                    <img src="dist/image/klasik.jpg" width="100px" />
                     <div>
                         <h4 class="text-xl text-white font-bold">Kopi Klasik</h4>
                         <h4 class="text-xl text-white font-bold mb-2">( Rp 5.000 )</h4>
@@ -194,7 +194,7 @@
                 </div>
                 <!--menu 4-->
                 <div class="flex space-x-5 py-8 px-8 ring-2 ring-white rounded-xl">
-                    <img src="image/tubruk.webp" width="100px" />
+                    <img src="dist/image/tubruk.webp" width="100px" />
                     <div>
                         <h4 class="text-xl text-white font-bold ">Kopi Tubruk Susu</h4>
                         <h4 class="text-xl text-white font-bold mb-2">( Rp 5.000 )</h4>
@@ -203,7 +203,7 @@
                 </div>
                 <!--menu 5-->
                 <div class="flex space-x-5 py-8 px-8 ring-2 ring-white rounded-xl">
-                    <img src="image/vietnamdrip.jpeg" width="100px" />
+                    <img src="dist/image/vietnamdrip.jpeg" width="100px" />
                     <div>
                         <h4 class="text-2xl text-white font-bold">Vietnam Drip</h4>
                         <h4 class="text-xl text-white font-bold mb-2">( Rp 10.000 )</h4>
@@ -213,7 +213,7 @@
                 </div>
                 <!--menu 6-->
                 <div class="space-x-5 py-2 px-2 ring-2 ring-black rounded-xl">
-                    <img src="image/meja.jpeg" width="800px" />
+                    <img src="dist/image/meja.jpeg" width="800px" />
                     <div>
                         <h1 class="text-xl text-center font-serif text-gray-400 mt-1 pb-2 border-b border-white ">
                             Nikmati kopi panas hari ini di sudut BK</h1>
@@ -232,7 +232,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 ps-4 pe-4">
                 <!--menu 1-->
                 <div class="flex space-x-5 py-8 px-8 ring-2 bg ring-white rounded-xl">
-                    <img src="image/esspanishlatte.jpeg" width="130px" />
+                    <img src="dist/image/esspanishlatte.jpeg" width="130px" />
                     <div>
                         <h4 class="text-2xl text-white font-bold mb-2">Ice Kopi Susu BK</h4>
                         <p class="text-white text-2xl">( Rp 13.000 )</p>
@@ -240,7 +240,7 @@
                 </div>
                 <!--menu 2-->
                 <div class="flex space-x-5 py-8 px-8 ring-2 ring-white rounded-xl">
-                    <img src="image/eskopimatcha.jpeg" width="130px" />
+                    <img src="dist/image/eskopimatcha.jpeg" width="130px" />
                     <div>
                         <h4 class="text-2xl text-white font-bold mb-2">Ice Espresso X Matcha</h4>
                         <p class="text-white text-2xl">( Rp 15.000 )</p>
@@ -248,7 +248,7 @@
                 </div>
                 <!--menu 3-->
                 <div class="flex space-x-5 py-8 px-8 ring-2 ring-white rounded-xl">
-                    <img src="image/eskopiaren.jpeg" width="130px" />
+                    <img src="dist/image/eskopiaren.jpeg" width="130px" />
                     <div>
                         <h4 class="text-2xl text-white font-bold mb-2">Ice Espresso X Aren</h4>
                         <p class="text-white text-2xl">( Rp 15.000 )</p>
@@ -256,7 +256,7 @@
                 </div>
                 <!--menu 4-->
                 <div class="flex space-x-5 py-8 px-8 ring-2 ring-white rounded-xl">
-                    <img src="image/eskopibanana.jpeg" width="130px" />
+                    <img src="dist/image/eskopibanana.jpeg" width="130px" />
                     <div>
                         <h4 class="text-2xl text-white font-bold mb-2">Ice Espresso X Banana</h4>
                         <p class="text-white text-2xl">( Rp 15.000 )</p>
@@ -264,7 +264,7 @@
                 </div>
                 <!--menu 5-->
                 <div class="flex space-x-5 py-8 px-8 ring-2 ring-white rounded-xl">
-                    <img src="image/eskopimatcha.jpeg" width="130px" />
+                    <img src="dist/image/eskopimatcha.jpeg" width="130px" />
                     <div>
                         <h4 class="text-2xl text-white font-bold mb-2">Ice Espresso X Avocado</h4>
                         <p class="text-white text-2xl">( Rp 15.000 )</p>
@@ -272,7 +272,7 @@
                 </div>
                 <!--menu 6-->
                 <div class="flex space-x-5 py-8 px-8 ring-2 ring-white rounded-xl">
-                    <img src="image/esspanishlatte.jpeg" width="130px" />
+                    <img src="dist/image/esspanishlatte.jpeg" width="130px" />
                     <div>
                         <h4 class="text-2xl text-white font-bold mb-2">Ice Espresso X Vanilla</h4>
                         <p class="text-white text-2xl">( Rp 15.000 )</p>
@@ -280,7 +280,7 @@
                 </div>
                 <!--menu 7-->
                 <div class="flex space-x-5 py-8 px-8 ring-2 ring-white rounded-xl">
-                    <img src="image/eskopipandan.jpeg" width="130px" />
+                    <img src="dist/image/eskopipandan.jpeg" width="130px" />
                     <div>
                         <h4 class="text-2xl text-white font-bold mb-2">Ice Espresso X Pandan</h4>
                         <p class="text-white text-2xl">( Rp 15.000 )</p>
@@ -288,7 +288,7 @@
                 </div>
                 <!--menu 8-->
                 <div class="flex space-x-5 py-8 px-8 ring-2 ring-white rounded-xl">
-                    <img src="image/esamericano.jpeg" width="130px" />
+                    <img src="dist/image/esamericano.jpeg" width="130px" />
                     <div>
                         <h4 class="text-2xl text-white font-bold mb-2">Ice Americano</h4>
                         <p class="text-white text-2xl">( Rp 15.000 )</p>
@@ -296,7 +296,7 @@
                 </div>
                 <!--menu 9-->
                 <div class="flex space-x-5 py-8 px-8 ring-2 ring-white rounded-xl">
-                    <img src="image/esspanishlatte.jpeg" width="130px" />
+                    <img src="dist/image/esspanishlatte.jpeg" width="130px" />
                     <div>
                         <h4 class="text-2xl text-white font-bold mb-2">Ice Spanish Latte BK</h4>
                         <p class="text-white text-2xl">( Rp 15.000 )</p>
@@ -304,7 +304,7 @@
                 </div>
                 <!--menu 10-->
                 <div class="space-x-5 py-2 px-2 ring-2 ring-black rounded-xl">
-                    <img src="image/gitar.jpeg" width="800px" />
+                    <img src="dist/image/gitar.jpeg" width="800px" />
                     <div>
                         <h4 class="text-xl text-gray-400 text-left font-serif mt-1 pb-2 border-b border-white ">- Aku,
                             Kamu, dan sudut BK</h4>
@@ -322,7 +322,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 ps-4 pe-4">
                 <!--menu 1-->
                 <div class="flex space-x-5 py-8 px-8 ring-2 bg ring-white rounded-xl">
-                    <img src="image/eskopisusu.jpeg" width="130px" />
+                    <img src="dist/image/eskopisusu.jpeg" width="130px" />
                     <div>
                         <h4 class="text-2xl text-white font-bold mb-2">Original Avocado Latte</h4>
                         <p class="text-white text-2xl">13k</p>
@@ -330,7 +330,7 @@
                 </div>
                 <!--menu 2-->
                 <div class="flex space-x-5 py-8 px-8 ring-2 bg ring-white rounded-xl">
-                    <img src="image/pandan.jpeg" width="130px" />
+                    <img src="dist/image/pandan.jpeg" width="130px" />
                     <div>
                         <h4 class="text-2xl text-white font-bold mb-2">Original Pandan Latte</h4>
                         <p class="text-white text-2xl">( Rp 13.000 )</p>
@@ -338,7 +338,7 @@
                 </div>
                 <!--menu 1-->
                 <div class="flex space-x-5 py-8 px-8 ring-2 bg ring-white rounded-xl">
-                    <img src="image/eskopisusu.jpeg" width="130px" />
+                    <img src="dist/image/eskopisusu.jpeg" width="130px" />
                     <div>
                         <h4 class="text-2xl text-white font-bold mb-2">Ice X Banana Milk</h4>
                         <p class="text-white text-2xl">13k</p>
@@ -346,7 +346,7 @@
                 </div>
                 <!--menu 1-->
                 <div class="flex space-x-5 py-8 px-8 ring-2 bg ring-white rounded-xl">
-                    <img src="image/eskopisusu.jpeg" width="130px" />
+                    <img src="dist/image/eskopisusu.jpeg" width="130px" />
                     <div>
                         <h4 class="text-2xl text-white font-bold mb-2">Ice X Vanilla Milk</h4>
                         <p class="text-white text-2xl">13k</p>
@@ -354,7 +354,7 @@
                 </div>
                 <!--menu 1-->
                 <div class="flex space-x-5 py-8 px-8 ring-2 bg ring-white rounded-xl">
-                    <img src="image/eskopisusu.jpeg" width="130px" />
+                    <img src="dist/image/eskopisusu.jpeg" width="130px" />
                     <div>
                         <h4 class="text-2xl text-white font-bold mb-2">Ice X Matcha Latte</h4>
                         <p class="text-white text-2xl">13k</p>
@@ -362,7 +362,7 @@
                 </div>
                 <!--menu 10-->
                 <div class="space-x-5 py-2 px-2 ring-2 ring-black rounded-xl">
-                    <img src="image/gitar.jpeg" width="800px" />
+                    <img src="dist/image/gitar.jpeg" width="800px" />
                     <div>
                         <h4 class="text-xl text-gray-400 text-left font-serif mt-1 pb-1 border-b border-white ">- Aku,
                             Kamu, dan sudut BK</h4>
@@ -375,7 +375,7 @@
     <!-- tentang BK-->
     <section id="tentang" class="bg-black w-10/12 md:container mx-auto py-20">
         <div class="space-x-10 px-4  grid grid-cols-1 md:grid-cols-2">
-            <img src="image/bgbanner.jpeg" width="500px" class="aspect-square">
+            <img src="dist/image/bgbanner.jpeg" width="500px" class="aspect-square">
             <div class="text-white">
                 <h3 class="text-3xl font-bold mb-5 mt-6">Tentang BengkelKopi</h3>
                 <p class="mb-4"> BengkelKopi adalah sebuah warkop yang berdiri sejak 17 Maret 2024, berlokasi di Desa
