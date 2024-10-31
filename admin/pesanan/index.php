@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+// Periksa apakah pengguna sudah login, jika tidak, arahkan ke login
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../../login.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -83,72 +92,7 @@
 
                 <!-- Menu navigasi untuk desktop -->
                 <ul class="hidden md:flex space-x-4 ml-auto">
-                    <div class="relative">
-                        <div class="inline-flex items-center overflow-hidden rounded-md border bg-white">
-                            <a href="#"
-                                class="border-e px-4 py-2 text-sm/none text-gray-600 hover:bg-gray-50 hover:text-gray-700">
-                                Edit
-                            </a>
-
-                            <button id="dropdown-btn"
-                                class="h-full p-2 text-gray-600 hover:bg-gray-50 hover:text-gray-700">
-                                <span class="sr-only">Menu</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 20 20"
-                                    fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </button>
-                        </div>
-
-                        <!-- Dropdown menu -->
-                        <div id="dropdown-menu"
-                            class="absolute end-0 z-10 mt-2 w-56 divide-y divide-gray-100 rounded-md border border-gray-100 bg-white shadow-lg hidden"
-                            role="menu">
-                            <div class="p-2">
-                                <a href="#"
-                                    class="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
-                                    role="menuitem">
-                                    View on Storefront
-                                </a>
-
-                                <a href="#"
-                                    class="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
-                                    role="menuitem">
-                                    View Warehouse Info
-                                </a>
-
-                                <a href="#"
-                                    class="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
-                                    role="menuitem">
-                                    Duplicate Product
-                                </a>
-
-                                <a href="#"
-                                    class="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
-                                    role="menuitem">
-                                    Unpublish Product
-                                </a>
-                            </div>
-
-                            <div class="p-2">
-                                <form method="POST" action="#">
-                                    <button type="submit"
-                                        class="flex w-full items-center gap-2 rounded-lg px-4 py-2 text-sm text-red-700 hover:bg-red-50"
-                                        role="menuitem">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                        </svg>
-
-                                        Delete Product
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                    <a href="../../logout.php">Keluar</a>
                 </ul>
             </div>
         </nav>
@@ -242,10 +186,10 @@
                                                             ORDER BY 
                                                                 CASE WHEN status = 'proses' THEN 1 ELSE 2 END,
                                                                 waktu_pemesanan ASC";
-                        
+
                         $result = $conn->query($sql);
                         $no = 1; // Inisialisasi nomor urut
-                        
+
                         if ($result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
                                 // Tampilkan setiap data dalam bentuk tabel
@@ -283,7 +227,7 @@
         // Menu baru
         const newMenuItem = document.createElement('li');
         newMenuItem.innerHTML =
-            `<a href="#" class="block rounded-lg px-4 py-2 text-sm md:hidden lg:hidden xl:hidden font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"><i class="fas fa-sign-out-alt mr-2"></i> Keluar</a>`;
+            `<a href="../../logout.php" class="block rounded-lg px-4 py-2 text-sm md:hidden lg:hidden xl:hidden font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"><i class="fas fa-sign-out-alt mr-2"></i> Keluar</a>`;
 
         menuBtn.addEventListener('click', () => {
             sidebar.classList.toggle('hidden-sidebar');
