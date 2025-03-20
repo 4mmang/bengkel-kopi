@@ -3,19 +3,19 @@ session_start();
 include 'backend/connection.php';
 
 // Inisialisasi variabel error untuk pesan kesalahan
-$error = "";
+$error = '';
 
 // Periksa apakah form telah disubmit
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['name'];
     $password = $_POST['password'];
 
     // Cek apakah username dan password tidak kosong
     if (!empty($username) && !empty($password)) {
         // Query untuk mengambil user berdasarkan username
-        $sql = "SELECT id, username, password FROM users WHERE username = ?";
+        $sql = 'SELECT id, username, role, password FROM users WHERE username = ?';
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("s", $username);
+        $stmt->bind_param('s', $username);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -28,18 +28,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Set sesi pengguna dan arahkan ke dashboard
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['username'] = $user['username'];
-                header("Location: admin/dashboard.php");
+                $_SESSION['role'] = $user['role']; // Simpan role di session
+
+                // Arahkan ke halaman berdasarkan role
+                if ($user['role'] == 'admin') {
+                    header('Location: admin/dashboard.php');
+                } elseif ($user['role'] == 'owner') {
+                    header('Location: owner/index.php');
+                }
+                // header('Location: admin/dashboard.php');
                 exit();
             } else {
-                $error = "Username atau password salah.";
+                $error = 'Username atau password salah.';
             }
         } else {
-            $error = "Username atau password salah.";
+            $error = 'Username atau password salah.';
         }
 
         $stmt->close();
     } else {
-        $error = "Username dan password harus diisi.";
+        $error = 'Username dan password harus diisi.';
     }
     $conn->close();
 }
@@ -61,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h1 class="text-3xl font-bold mb-4 text-center">BengkelKopi</h1>
 
             <?php if (!empty($error)) : ?>
-                <p class="text-red-600 mb-4"><?= htmlspecialchars($error); ?></p>
+            <p class="text-red-600 mb-4"><?= htmlspecialchars($error) ?></p>
             <?php endif; ?>
 
             <form method="POST" action="">
