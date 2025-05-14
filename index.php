@@ -47,7 +47,8 @@
                             </li>
                             <li class="group">
                                 <a href="lihat-pesanan.php"
-                                    class="text-base text-white py-2 mx-8 flex group-hover:text-primary">Lihat Pesanan</a>
+                                    class="text-base text-white py-2 mx-8 flex group-hover:text-primary">Lihat
+                                    Pesanan</a>
                             </li>
                             <li class="group">
                                 <a href="#tentang"
@@ -67,7 +68,7 @@
 
     <!-- banner section-->
     <section id="beranda">
-        <div class="bg-[url('/image/bgbanner.jpeg')] w-full h-screen bg-cover bg-center">
+        <div style="background-image: url('dist/image/banner.jpeg');" class="bg-[url('dist/image/bgbanner.jpeg')] w-full h-screen bg-cover bg-center">
             <div class="bg-black/60 w-full h-full flex flex-col  items-center">
                 <div class="mt-12 md:mt-20">
                     <h1><img src="dist/image/logoobk.png" alt="" width="100px"></h1>
@@ -97,60 +98,60 @@
 
     <!--menu hari ini section-->
     <section id="menu">
-        <div class="bg-[url('image/bgmenu.jpeg')] h-screen bg-cover bg-center">
+        <div style="background-image: url('dist/image/bgmenu.jpeg');" class="bg-[url('image/bgmenu.jpeg')] h-screen bg-cover bg-center">
             <div class="bg-black/70 h-full flex justify-center">
                 <div>
                     <h1 class="text-white text-center text-3xl font-bold mt-6 ">Menu Hari Ini</h1>
                     <p class="text-white text-right font-sans ">( <?php echo date('d/m/Y'); ?> )</p>
                     <?php
                     include 'backend/connection.php'; // Menghubungkan file koneksi
-
+                    
                     // Query untuk mengambil menu dengan status 'on'
                     $sql = "SELECT id, nama FROM menus WHERE status = 'on'";
                     $result = $conn->query($sql);
-
+                    
                     $menus = [];
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                             $menus[] = $row; // Simpan menu ke dalam array
                         }
                     }
-
+                    
                     // Hitung jumlah menu
                     $totalMenus = count($menus);
                     $half = ceil($totalMenus / 2); // Jika ganjil, bagi dua dan bulatkan ke atas
-
+                    
                     // Tampilkan tabel
                     echo '<table class="table-auto border">';
                     echo '<thead class="text-2xl text-white bg-black">';
                     echo '<tr><th class="p-2 border-b text-left">Ready</th><th class="py-3 px-2 border-b text-left text-black">Ket</th></tr>';
                     echo '</thead>';
                     echo '<tbody class="text-xl text-white text-left">';
-
+                    
                     // Loop untuk kolom kiri dan kanan
                     for ($i = 0; $i < $half; $i++) {
                         echo '<tr class="bg-transparent">';
-
+                    
                         // Cetak menu di kolom kiri
                         if (isset($menus[$i])) {
                             echo '<td class="p-2 border-b border-x text-left">' . $menus[$i]['nama'] . '</td>';
                         } else {
                             echo '<td class="p-2 border-b border-x text-left"></td>'; // Jika tidak ada, kosongkan
                         }
-
+                    
                         // Cetak menu di kolom kanan jika ada
                         if (isset($menus[$i + $half])) {
                             echo '<td class="p-2 border-b text-left">' . $menus[$i + $half]['nama'] . '</td>';
                         } else {
                             echo '<td class="p-2 border-b text-left"></td>'; // Jika tidak ada, kosongkan
                         }
-
+                    
                         echo '</tr>';
                     }
-
+                    
                     echo '</tbody>';
                     echo '</table>';
-
+                    
                     $conn->close();
                     ?>
                 </div>

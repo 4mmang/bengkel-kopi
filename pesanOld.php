@@ -15,21 +15,27 @@
 
 <body class="bg-black">
 
+    <!-- Form Pemesanan -->
     <div class="container mx-auto p-4 mt-4">
         <div class="bg-white rounded-lg shadow-lg w-full md:w-1/2 mx-auto">
+            <!-- Form Header -->
             <div class="flex items-center justify-between p-4 border-b">
                 <h2 class="text-lg font-semibold">Buat Pesanan</h2>
             </div>
+            <!-- Form Body -->
             <div class="p-4">
+                <!-- Input Nama -->
                 <label for="nama" class="block font-semibold">Nama:</label>
                 <input type="text" id="nama" class="w-full p-2 border rounded mt-2" placeholder="Masukkan nama Anda">
 
+                <!-- Pilihan Meja (Luar/Dalam) -->
                 <label for="tableOption" class="block font-semibold mt-4">Pilih Meja:</label>
                 <select id="meja" class="w-full p-2 border rounded mt-2">
                     <option value="dalam">Dalam</option>
                     <option value="luar">Luar</option>
                 </select>
 
+                <!-- Pilihan Take Away atau Minum di Tempat -->
                 <label class="block font-semibold mt-4">Jenis Pesanan:</label>
                 <div class="flex gap-4 mt-2">
                     <label class="flex items-center">
@@ -42,6 +48,7 @@
                     </label>
                 </div>
 
+                <!-- Pilihan Menu -->
                 <p class="mt-4">Pilihan menu hari ini:</p>
                 <select id="coffeeSelect" class="w-full p-2 border rounded mt-2">
                     <?php
@@ -64,21 +71,31 @@
                     ?>
                 </select>
 
+                <!-- Input Jumlah -->
                 <label for="quantity" class="mt-4">Jumlah:</label>
                 <input type="number" id="quantity" class="w-full p-2 border rounded mt-2" min="1" value="1">
 
                 <button id="addToOrder" class="mt-4 px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600">Tambah</button>
 
+                <!-- Daftar Pesanan -->
                 <h3 class="mt-4 font-semibold">Daftar Pesanan:</h3>
                 <ul id="orderList" class="mt-2"></ul>
             </div>
+            <!-- Form Footer -->
             <div class="flex justify-end p-4 border-t">
                 <button id="placeOrder" class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">Pesan</button>
                 <a href="index.php" class="px-4 py-2 bg-blue-300 rounded ml-3">Kembali ke halaman utama</a>
             </div>
         </div>
     </div>
+    <!-- End of Form Pemesanan -->
+
+
+
+    <!-- footer-->
     <footer class="py-2 text-center font-bold text-white">&copy; 2024 BengkelKopi</footer>
+    <!-- end of footer-->
+
     <script src="dist/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -89,46 +106,18 @@
                 placeholder: true,
                 searchEnabled: true,
             });
-
-            // Ambil parameter menu_id dari URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const menuIdFromQR = urlParams.get('menu_id');
-
-            // Jika ada menu_id, set pilihan pada select
-            // if (menuIdFromQR) {
-            //     const optionToSelect = document.querySelector(`#coffeeSelect option[value="${menuIdFromQR}"]`);
-            //     if (optionToSelect) {
-            //         coffeeSelect.setChoiceByValue(menuIdFromQR);
-            //     }
-            // }
-
-            // Jika ada menu_id dari URL
-            if (menuIdFromQR) {
-                const optionToSelect = document.querySelector(`#coffeeSelect option[value="${menuIdFromQR}"]`);
-                if (optionToSelect) {
-                    coffeeSelect.setChoiceByValue(menuIdFromQR);
-                } else {
-                    // Jika tidak ditemukan, tampilkan pesan error
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Menu Tidak Ditemukan',
-                        text: 'Menu yang dipindai dari QR code tidak tersedia.',
-                    });
-                }
-            }
-
         });
 
         const addToOrder = document.getElementById('addToOrder');
-        const coffeeSelectElement = document.getElementById('coffeeSelect'); // Perbaiki nama variabel
+        const coffeeSelect = document.getElementById('coffeeSelect');
         const quantityInput = document.getElementById('quantity');
         const orderList = document.getElementById('orderList');
         const placeOrder = document.getElementById('placeOrder');
         let orders = [];
 
         addToOrder.addEventListener('click', () => {
-            const coffeeType = coffeeSelectElement.value;
-            const coffeeText = coffeeSelectElement.options[coffeeSelectElement.selectedIndex]
+            const coffeeType = coffeeSelect.value;
+            const coffeeText = coffeeSelect.options[coffeeSelect.selectedIndex]
                 .text; // Mendapatkan teks opsi yang dipilih
             const quantity = quantityInput.value;
 
@@ -170,7 +159,7 @@
                 const jenisPesanan = document.querySelector('input[name="jenisPesanan"]:checked').value;
 
                 // Validasi input
-                if (nama === "" || meja === "" || !document.querySelector('input[name="jenisPesanan"]:checked')) {
+                if (nama === "" || meja === "" || jenisPesanan === "") {
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
