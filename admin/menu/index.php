@@ -186,7 +186,6 @@ $menusOn = $conn->query($sqlOn);
                         <tr>
                             <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">No</th>
                             <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Nama Menu</th>
-                            <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Nama QR Code</th>
                             <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Aksi</th>
                             <th class="px-4 py-2">QR Code</th>
                         </tr>
