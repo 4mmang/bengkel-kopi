@@ -187,8 +187,8 @@ $menusOn = $conn->query($sqlOn);
                             <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">No</th>
                             <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Nama Menu</th>
                             <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Nama QR Code</th>
-                            <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Status</th>
-                            <th class="px-4 py-2">Aksi</th>
+                            <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Aksi</th>
+                            <th class="px-4 py-2">QR Code</th>
                         </tr>
                     </thead>
 
@@ -209,7 +209,7 @@ $menusOn = $conn->query($sqlOn);
                                 // Kolom tambahan untuk Cetak QR
                                 echo '<td class="whitespace-nowrap px-4 py-2">';
                                 echo '<a href="' . $menu['qr_code'] . '" target="_blank" class="inline-block rounded bg-green-600 px-4 py-2 text-xs font-medium text-white hover:bg-green-700">';
-                                echo 'Cetak QR';
+                                echo 'Download';
                                 echo '</a>';
                                 echo '</td>';
 
