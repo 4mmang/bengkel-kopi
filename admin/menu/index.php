@@ -208,7 +208,7 @@ $menusOn = $conn->query($sqlOn);
 
                                 // Kolom tambahan untuk Cetak QR
                                 echo '<td class="whitespace-nowrap px-4 py-2">';
-                                echo '<a href="' . $menu['qr_code'] . '" target="_blank" class="inline-block rounded bg-green-600 px-4 py-2 text-xs font-medium text-white hover:bg-green-700">';
+                                echo '<a href="../../' . $menu['qr_code'] . '" target="_blank" class="inline-block rounded bg-green-600 px-4 py-2 text-xs font-medium text-white hover:bg-green-700">';
                                 echo 'Download';
                                 echo '</a>';
                                 echo '</td>';
