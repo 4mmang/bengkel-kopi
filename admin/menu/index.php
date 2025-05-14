@@ -186,6 +186,7 @@ $menusOn = $conn->query($sqlOn);
                         <tr>
                             <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">No</th>
                             <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Nama Menu</th>
+                            <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Nama QR Code</th>
                             <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Status</th>
                             <th class="px-4 py-2">Aksi</th>
                         </tr>
@@ -193,7 +194,6 @@ $menusOn = $conn->query($sqlOn);
 
                     <tbody class="divide-y divide-gray-200">
                         <?php
-                        // Misalkan $menus adalah hasil query untuk mengambil semua menu dari database
                         if ($menusOn->num_rows > 0) {
                             while ($menu = $menusOn->fetch_assoc()) {
                                 echo '<tr>';
@@ -205,11 +205,20 @@ $menusOn = $conn->query($sqlOn);
                                 echo 'Hapus';
                                 echo '</a>';
                                 echo '</td>';
+
+                                // Kolom tambahan untuk Cetak QR
+                                echo '<td class="whitespace-nowrap px-4 py-2">';
+                                echo '<a href="' . $menu['qr_code'] . '" target="_blank" class="inline-block rounded bg-green-600 px-4 py-2 text-xs font-medium text-white hover:bg-green-700">';
+                                echo 'Cetak QR';
+                                echo '</a>';
+                                echo '</td>';
+
                                 echo '</tr>';
                             }
                         }
                         ?>
                     </tbody>
+
                 </table>
             </div>
         </div>
