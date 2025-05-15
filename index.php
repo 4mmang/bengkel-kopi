@@ -323,7 +323,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 ps-4 pe-4">
                 <!--menu 1-->
                 <div class="flex space-x-5 py-8 px-8 ring-2 bg ring-white rounded-xl">
-                    <img src="dist/image/eskopisusu.jpeg" width="130px" />
+                    <img src="dist/image/Original Avocado Latte.jpeg" width="130px" />
                     <div>
                         <h4 class="text-2xl text-white font-bold mb-2">Original Avocado Latte</h4>
                         <p class="text-white text-2xl">13k</p>
@@ -339,7 +339,7 @@
                 </div>
                 <!--menu 1-->
                 <div class="flex space-x-5 py-8 px-8 ring-2 bg ring-white rounded-xl">
-                    <img src="dist/image/eskopisusu.jpeg" width="130px" />
+                    <img src="dist/image/Ice x Banana Milk.jpeg" width="130px" />
                     <div>
                         <h4 class="text-2xl text-white font-bold mb-2">Ice X Banana Milk</h4>
                         <p class="text-white text-2xl">13k</p>
@@ -355,15 +355,15 @@
                 </div>
                 <!--menu 1-->
                 <div class="flex space-x-5 py-8 px-8 ring-2 bg ring-white rounded-xl">
-                    <img src="dist/image/eskopisusu.jpeg" width="130px" />
+                    <img src="dist/image/Ice x Matcha.jpeg" width="130px" />
                     <div>
-                        <h4 class="text-2xl text-white font-bold mb-2">Ice X Matcha Latte</h4>
+                        <h4 class="text-2xl text-white font-bold mb-2">Ice X Matcha</h4>
                         <p class="text-white text-2xl">13k</p>
                     </div>
                 </div>
                 <!--menu 10-->
                 <div class="space-x-5 py-2 px-2 ring-2 ring-black rounded-xl">
-                    <img src="dist/image/gitar.jpeg" width="800px" />
+                    <img src="dist/image/WhatsApp Image 2025-05-15 at 11.50.21.jpeg" width="800px" />
                     <div>
                         <h4 class="text-xl text-gray-400 text-left font-serif mt-1 pb-1 border-b border-white ">- Aku,
                             Kamu, dan sudut BK</h4>
