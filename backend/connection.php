@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost"; // Nama server, biasanya "localhost"
-$username = "u206385220_bk"; // Nama pengguna MySQL Anda
-$password = "A9PV;8k~U&*n"; // Kata sandi MySQL Anda
-$database = "u206385220_bk"; // Nama database yang ingin Anda hubungkan
+$username = "root"; // Nama pengguna MySQL Anda
+$password = ""; // Kata sandi MySQL Anda
+$database = "warkop"; // Nama database yang ingin Anda hubungkan
 
 // Membuat koneksi
 $conn = new mysqli($servername, $username, $password, $database);
