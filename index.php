@@ -363,7 +363,7 @@
                 </div>
                 <!--menu 10-->
                 <div class="space-x-5 py-2 px-2 ring-2 ring-black rounded-xl">
-                    <img src="dist/image/WhatsApp Image 2025-05-15 at 11.50.21.jpeg" width="800px" />
+                    <img src="dist/image/WhatsApp Image 2025-06-14 at 18.50.20.jpeg" width="800px" />
                     <div>
                         <h4 class="text-xl text-gray-400 text-left font-serif mt-1 pb-1 border-b border-white ">- Proses 'perbaikan' perasaan dibalik meja bar</h4>
 
