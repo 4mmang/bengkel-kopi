@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Waktu pembuatan: 15 Bulan Mei 2025 pada 06.45
+-- Waktu pembuatan: 16 Bulan Mei 2025 pada 10.41
 -- Versi server: 10.11.10-MariaDB
 -- Versi PHP: 7.2.34
 
@@ -90,7 +90,18 @@ INSERT INTO `orders` (`id`, `id_pesanan`, `id_menu`, `jumlah`) VALUES
 (10, 8, 5, 4),
 (11, 9, 3, 4),
 (12, 9, 8, 3),
-(13, 10, 7, 2);
+(13, 10, 7, 2),
+(14, 11, 19, 1),
+(15, 12, 1, 1),
+(16, 13, 1, 1),
+(17, 14, 1, 1),
+(18, 15, 1, 1),
+(19, 17, 1, 1),
+(20, 16, 1, 1),
+(21, 18, 1, 1),
+(22, 19, 5, 1),
+(23, 20, 5, 1),
+(24, 21, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -121,7 +132,18 @@ INSERT INTO `pesanan` (`id`, `nama`, `meja`, `take_away`, `status`, `waktu_pemes
 (7, 'Allcode', 'dalam', 'tidak', 'proses', '2025-03-20 07:34:57'),
 (8, 'Arman Umar', 'luar', 'tidak', 'proses', '2025-03-20 07:35:48'),
 (9, 'Rascoding', 'dalam', 'tidak', 'proses', '2025-03-22 13:48:07'),
-(10, 'Arman', 'luar', 'tidak', 'proses', '2025-05-14 09:55:21');
+(10, 'Arman', 'luar', 'tidak', 'proses', '2025-05-14 09:55:21'),
+(11, 'fika', 'dalam', 'tidak', 'proses', '2025-05-15 07:36:21'),
+(12, 'Fani', 'luar', 'tidak', 'proses', '2025-05-16 05:28:16'),
+(13, 'Fani', 'luar', 'tidak', 'proses', '2025-05-16 05:28:16'),
+(14, 'Fani', 'luar', 'tidak', 'proses', '2025-05-16 05:28:16'),
+(15, 'Fani', 'luar', 'tidak', 'proses', '2025-05-16 05:28:16'),
+(16, 'Fani', 'luar', 'tidak', 'proses', '2025-05-16 05:28:17'),
+(17, 'Fani', 'luar', 'tidak', 'proses', '2025-05-16 05:28:17'),
+(18, 'Fani', 'luar', 'tidak', 'proses', '2025-05-16 05:28:17'),
+(19, 'Fan', 'dalam', 'tidak', 'proses', '2025-05-16 05:29:11'),
+(20, 'Mirna', 'dalam', 'tidak', 'proses', '2025-05-16 07:22:12'),
+(21, 'Dira', 'dalam', 'tidak', 'proses', '2025-05-16 07:25:41');
 
 -- --------------------------------------------------------
 
@@ -186,13 +208,13 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT untuk tabel `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT untuk tabel `pesanan`
 --
 ALTER TABLE `pesanan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`

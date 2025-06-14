@@ -365,8 +365,7 @@
                 <div class="space-x-5 py-2 px-2 ring-2 ring-black rounded-xl">
                     <img src="dist/image/WhatsApp Image 2025-05-15 at 11.50.21.jpeg" width="800px" />
                     <div>
-                        <h4 class="text-xl text-gray-400 text-left font-serif mt-1 pb-1 border-b border-white ">- Aku,
-                            Kamu, dan sudut BK</h4>
+                        <h4 class="text-xl text-gray-400 text-left font-serif mt-1 pb-1 border-b border-white ">- Proses 'perbaikan' perasaan dibalik meja bar</h4>
 
                     </div>
                 </div>
